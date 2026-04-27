@@ -13,16 +13,16 @@ SENDER_PASSWORD = os.environ["SENDER_PASSWORD"]
 RECEIVER_EMAIL  = os.environ["RECEIVER_EMAIL"]
 
 # --- Date & Time (PH) ---
-ph_tz   = pytz.timezone("Asia/Manila")
-now     = datetime.now(ph_tz)
+ph_tz    = pytz.timezone("Asia/Manila")
+now      = datetime.now(ph_tz)
 date_str = now.strftime("%B %d, %Y")
 day_str  = now.strftime("%A")
 
-# --- Weather (Davao City) ---
+# --- Weather (Catbalogan City, Samar) ---
 def get_weather():
     try:
-        # Open-Meteo — free, no API key needed
-        url = "https://api.open-meteo.com/v1/forecast?latitude=7.0707&longitude=125.6087&current=temperature_2m,weathercode,windspeed_10m,relative_humidity_2m&timezone=Asia%2FManila"
+        # Catbalogan City coordinates: 11.7742° N, 124.8858° E
+        url = "https://api.open-meteo.com/v1/forecast?latitude=11.7742&longitude=124.8858&current=temperature_2m,weathercode,windspeed_10m,relative_humidity_2m&timezone=Asia%2FManila"
         with urllib.request.urlopen(url, timeout=10) as res:
             data = json.loads(res.read())
         current  = data["current"]
@@ -31,7 +31,6 @@ def get_weather():
         wind     = current["windspeed_10m"]
         code     = current["weathercode"]
 
-        # Map weather code to description
         weather_map = {
             0: "Clear sky ☀️", 1: "Mainly clear 🌤️", 2: "Partly cloudy ⛅",
             3: "Overcast ☁️", 45: "Foggy 🌫️", 48: "Foggy 🌫️",
@@ -72,7 +71,7 @@ Good afternoon, Julius!
 📅  {day_str}, {date_str}
 ━━━━━━━━━━━━━━━━━━━━━━━━
 
-🌤  WEATHER — Davao City
+🌤  WEATHER — Catbalogan City, Samar
 {weather}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━

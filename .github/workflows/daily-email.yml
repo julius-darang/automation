@@ -2,7 +2,7 @@ name: Daily Email at 2PM PH Time
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # 6am UTC = 2pm PH (UTC+8)
+    - cron: '0 3 * * *'  # 6am UTC = 2pm PH (UTC+8)
   workflow_dispatch:
 
 jobs:

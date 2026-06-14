@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief Automation</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    line-height: 1.7;
+    padding: 2rem 1rem;
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .hero h1 { font-size: 2.2rem; margin-bottom: .75rem; }
+  .hero p { font-size: 1.1rem; opacity: .85; max-width: 520px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.15);
+    border-radius: 20px;
+    padding: .3rem .9rem;
+    font-size: .8rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Cards */
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .card h2 {
+    font-size: 1.25rem;
+    margin-bottom: .75rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .card h3 {
+    font-size: 1rem;
+    margin: 1rem 0 .4rem;
+  }
+  .card p, .card li { color: #444; }
+  .card ul { padding-left: 1.25rem; }
+  .card li { margin-bottom: .3rem; }
+
+  /* Email preview */
+  .email-preview {
+    background: #f8f9fc;
+    border: 1px solid #e2e6ef;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    font-family: "SF Mono", "Fira Code", "Courier New", monospace;
+    font-size: .85rem;
+    line-height: 1.6;
+    white-space: pre;
+    overflow-x: auto;
+    color: #333;
+    margin: .75rem 0;
+  }
+
+  /* Steps */
+  .step-list { list-style: none; padding: 0; }
+  .step-list li {
+    display: flex;
+    gap: 1rem;
+    padding: .75rem 0;
+    border-bottom: 1px solid #eee;
+    align-items: flex-start;
+  }
+  .step-list li:last-child { border: none; }
+  .step-num {
+    background: #0f3460;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: .85rem;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* Inline code */
+  code {
+    background: #eef0f5;
+    padding: .15rem .5rem;
+    border-radius: 5px;
+    font-size: .85em;
+    font-family: "SF Mono", "Fira Code", monospace;
+  }
+  pre {
+    background: #1a1a2e;
+    color: #e4e4ef;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    font-size: .85rem;
+    line-height: 1.55;
+  }
+  pre .comment { color: #6c7a9e; }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9rem;
+  }
+  th, td {
+    text-align: left;
+    padding: .55rem .75rem;
+    border-bottom: 1px solid #e2e6ef;
+  }
+  th { background: #f8f9fc; font-weight: 600; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: #888;
+    font-size: .85rem;
+    padding: 2rem 0 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 540px) {
+    .hero { padding: 2rem 1.25rem; }
+    .hero h1 { font-size: 1.6rem; }
+    .card { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">&#9679; Fully Automated &middot; 100% Free</div>
+    <h1>Your Daily Brief, Delivered</h1>
+    <p>Weather, a motivational quote, and news headlines in your inbox every afternoon &mdash; no apps, no subscriptions, no effort.</p>
+  </div>
+
+  <!-- Why -->
+  <div class="card">
+    <h2>&#128200; Why Bother?</h2>
+    <p>Every morning, most of us check the same things: the weather, the news, something to start the day right. But that adds up to a dozen taps across five apps before 9 AM.</p>
+    <p>This automation <strong>condenses all of that into a single email</strong> that arrives automatically at the same time every day. No notifications, no doomscrolling, no decisions. Just the three things you actually need:</p>
+    <ul>
+      <li><strong>&#127782; Weather</strong> &mdash; Should I bring an umbrella today?</li>
+      <li><strong>&#128172; Quote</strong> &mdash; A small dose of perspective.</li>
+      <li><strong>&#128250; Headlines</strong> &mdash; What's happening in the world.</li>
+    </ul>
+    <p style="margin-top:.75rem;">It's <strong>five minutes</strong> to set up and then you never think about it again. It just shows up.</p>
+  </div>
+
+  <!-- What it looks like -->
+  <div class="card">
+    <h2>&#128231; What Arrives in Your Inbox</h2>
+    <p>Here's exactly what the email looks like &mdash; clean, plain text, no tracking pixels, no HTML fluff:</p>
+    <div class="email-preview">Good afternoon!
+
+&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;
+&#128197;  Sunday, June 14, 2026
+&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;
+
+&#127774;  WEATHER &mdash; Borongan City, Eastern Samar
+Clear sky &#9728;&#65039; | 26.9&deg;C | Humidity: 85% | Wind: 2.3 km/h
+
+&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;
+
+&#128172;  QUOTE OF THE DAY
+"To belittle, you have to be little."
+&mdash; Kahlil Gibran
+
+&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;&#9473;
+
+&#128250;  HEADLINES
+  &bull; Royal Marines board Russian shadow fleet oil tanker in English Channel
+  &bull; Watch: MOD video shows Russian shadow fleet tanker interception
+  &bull; Why Haiti v Scotland was antidote to the ills of world football</div>
+  </div>
+
+  <!-- How it works (simple) -->
+  <div class="card">
+    <h2>&#9881;&#65039; How It Works</h2>
+    <p>There's no server, no app, no monthly bill. The whole thing runs on GitHub's free servers and uses free APIs for data.</p>
+    <div style="text-align:center;padding:.75rem 0;">
+      <div style="display:inline-flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-size:2rem;">&#9200;</div>
+          <div style="font-size:.8rem;color:#666;">GitHub Actions<br>cron trigger</div>
+        </div>
+        <div style="font-size:1.5rem;color:#aaa;">&#10142;</div>
+        <div style="text-align:center;">
+          <div style="font-size:2rem;">&#128187;</div>
+          <div style="font-size:.8rem;color:#666;">Python script<br>fetches data</div>
+        </div>
+        <div style="font-size:1.5rem;color:#aaa;">&#10142;</div>
+        <div style="text-align:center;">
+          <div style="font-size:2rem;">&#128231;</div>
+          <div style="font-size:.8rem;color:#666;">Gmail SMTP<br>delivers email</div>
+        </div>
+        <div style="font-size:1.5rem;color:#aaa;">&#10142;</div>
+        <div style="text-align:center;">
+          <div style="font-size:2rem;">&#128236;</div>
+          <div style="font-size:.8rem;color:#666;">Your inbox<br>receives brief</div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;color:#666;font-size:.9rem;">The whole pipeline is <strong>free</strong> &mdash; GitHub Actions has a free tier, all APIs are no-cost, and Gmail is free.</p>
+  </div>
+
+  <!-- Data sources -->
+  <div class="card">
+    <h2>&#127760; Where the Data Comes From</h2>
+    <table>
+      <tr><th>Section</th><th>Source</th><th>API Key?</th></tr>
+      <tr><td>&#127782; Weather</td><td><a href="https://open-meteo.com/">Open-Meteo</a></td><td>No</td></tr>
+      <tr><td>&#128172; Quote</td><td><a href="https://zenquotes.io/">ZenQuotes</a></td><td>No</td></tr>
+      <tr><td>&#128250; News</td><td><a href="https://feeds.bbci.co.uk/news/rss.xml">BBC RSS</a></td><td>No</td></tr>
+    </table>
+    <p style="margin-top:.75rem;font-size:.9rem;color:#666;">All three sources are free, require no registration, and have been reliable for years.</p>
+  </div>
+
+  <!-- Setup steps -->
+  <div class="card">
+    <h2>&#128736;&#65039; Setup: 5 Minutes, 3 Steps</h2>
+    <p>You need a free GitHub account and a Gmail address. That's it.</p>
+
+    <ol class="step-list">
+      <li>
+        <span class="step-num">1</span>
+        <div>
+          <strong>Generate a Gmail App Password</strong>
+          <p style="font-size:.9rem;margin-top:.2rem;">Go to <a href="https://myaccount.google.com/apppasswords">Google App Passwords</a>, select <strong>Mail</strong>, click <strong>Generate</strong>, and copy the 16-character password. (Requires 2-Step Verification to be enabled on your Google account.)</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <div>
+          <strong>Add 3 secrets to your GitHub repo</strong>
+          <p style="font-size:.9rem;margin-top:.2rem;">In your repository on GitHub, go to <strong>Settings &#8594; Secrets and variables &#8594; Actions</strong> and add:</p>
+          <table style="font-size:.85rem;margin-top:.4rem;">
+            <tr><td><code>SENDER_EMAIL</code></td><td>Your Gmail address</td></tr>
+            <tr><td><code>SENDER_PASSWORD</code></td><td>The app password from step 1</td></tr>
+            <tr><td><code>RECEIVER_EMAIL</code></td><td>Where you want the email sent</td></tr>
+          </table>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <div>
+          <strong>Push the code to GitHub</strong>
+          <p style="font-size:.9rem;margin-top:.2rem;">Upload <code>send_email.py</code> and <code>.github/workflows/daily-email.yml</code> to your repository. The workflow activates automatically and sends your first email at 2PM PH time. You can also trigger it manually from the Actions tab.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div style="background:#e8f5e9;border-radius:10px;padding:1rem 1.25rem;margin-top:1rem;">
+      <strong>&#9989; That's it.</strong> No server setup, no cron config, no monthly fees. Your daily brief will arrive automatically from tomorrow afternoon.
+    </div>
+  </div>
+
+  <!-- What if something fails -->
+  <div class="card">
+    <h2>&#128737;&#65039; What if Something Breaks?</h2>
+    <ul>
+      <li>If an API is down, the email still sends &mdash; that section just shows a friendly "unavailable" message.</li>
+      <li>If the email fails to send, the content is saved to a fallback file in the repo so nothing is lost.</li>
+      <li>If the entire workflow fails, a push notification is sent via <a href="https://ntfy.sh/">ntfy.sh</a> so you know immediately.</li>
+    </ul>
+  </div>
+
+  <!-- Customize -->
+  <div class="card">
+    <h2>&#127912; Make It Yours</h2>
+    <p>Everything is configurable by editing the <code>Config</code> block at the top of <code>send_email.py</code>:</p>
+    <pre><span class="comment"># Change the city and coordinates:</span>
+lat: float = 11.6083       <span class="comment"># Borongan City</span>
+lon: float = 125.4358
+city: str = "Borongan City, Eastern Samar"
+
+<span class="comment"># Change the timezone:</span>
+timezone: str = "Asia/Manila"
+
+<span class="comment"># Or run locally to test:</span>
+python send_email.py --dry-run   <span class="comment"># Preview the email</span>
+python send_email.py --local     <span class="comment"># Send using .env file</span></pre>
+  </div>
+
+  <!-- Tech details -->
+  <div class="card">
+    <h2>&#128218; Tech Stack</h2>
+    <ul>
+      <li><strong>Language:</strong> Python 3.9+ (standard library only, zero dependencies)</li>
+      <li><strong>Scheduling:</strong> GitHub Actions cron (free tier)</li>
+      <li><strong>Email delivery:</strong> Gmail SMTP via <code>smtplib</code></li>
+      <li><strong>APIs:</strong> Open-Meteo, ZenQuotes, BBC RSS &mdash; all free, no keys</li>
+    </ul>
+    <p style="margin-top:.75rem;font-size:.9rem;color:#666;">The entire project is a single Python file with <strong>zero pip packages</strong>. It uses only modules built into Python: <code>smtplib</code>, <code>urllib</code>, <code>json</code>, <code>xml.etree</code>, <code>zoneinfo</code>, <code>argparse</code>.</p>
+  </div>
+
+  <div class="footer">
+    Built with &#9829; for personal automation &middot; <a href="https://github.com/anomalyco/opencode">OpenCode</a>
+  </div>
+
+</div>
+</body>
+</html>
